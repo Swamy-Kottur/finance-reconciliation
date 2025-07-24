@@ -1,0 +1,26 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Init & Start
+    init: |
+      npm install
+      npx prisma generate
+    command: |
+      nx run-many --target=serve --projects=frontend,backend --parallel
+
+ports:
+  - port: 4200
+    onOpen: open-preview
+    description: Angular Frontend
+
+  - port: 3000
+    onOpen: open-preview
+    description: NestJS Backend
+
+vscode:
+  extensions:
+    - prisma.prisma
+    - angular.ng-template
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
